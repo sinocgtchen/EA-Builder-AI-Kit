@@ -6,6 +6,8 @@
 
 目前資料包版本與新 EA 的預設程式版本統一為 **`9.42`**，由本資料包的 `VERSION` 檔維護。不要將 `9.42.1` 填入程式屬性，否則 MT5 會出現 Market 版本格式警告；詳見 XML 規則中的程式版本說明。
 
+為了縮短判斷式積木，生成策略時優先先把指標值存入一般變數，再用變數積木比較。指標值依原訊號時機更新，最近收盤與前一根收盤等不同資料分開保存；指標期數等可調設定仍保留為外部參數。
+
 ## 不下載資料包：使用 GitHub 連結
 
 公開 repository：[sinocgtchen/EA-Builder-AI-Kit](https://github.com/sinocgtchen/EA-Builder-AI-Kit)。

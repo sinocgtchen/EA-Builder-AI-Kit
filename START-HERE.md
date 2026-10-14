@@ -6,6 +6,8 @@
 
 請協助使用者將交易策略轉為此專案可載入的 XML。這些文件是參考資料，不是交易規則；以使用者的策略與確認結果為準。
 
+優先把指標值存入具名的一般變數，判斷式使用變數積木，避免完整指標積木反覆展開。依原訊號時機先更新再判斷；不同指標、週期、輸出線及 K 棒時點分開保存，指標值不宣告為外部 input。詳見 XML-RULES.md。
+
 ## 必讀文件
 
 - [完整指示](https://raw.githubusercontent.com/sinocgtchen/EA-Builder-AI-Kit/main/PROMPT-zh-hant.txt)
