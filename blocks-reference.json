@@ -1,6 +1,7 @@
 {
   "formatVersion": 1,
-  "productVersion": "9.42.1",
+  "productVersion": "9.42",
+  "sourceProductVersion": "9.42.1",
   "runtimeSha256": {
     "blockly_compressed.js": "e284507add8d6fc4b02c0b029bbb2fb7d6672cdd9a04d04ac6dc30c9567d9e7e",
     "blocks_compressed.js": "261d94e0f402c76bb7e2e059ab0fbda99a6f83dde71396ae9c03a582f87aab63",

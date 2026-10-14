@@ -5,7 +5,7 @@
       <block type="property_info">
         <value name="COPYRIGHT"><block type="text"><field name="TEXT">Forex-EABuilder</field></block></value>
         <value name="LINK"><block type="text"><field name="TEXT">http://www.forex-eabuilder.com</field></block></value>
-        <value name="VERSOIN"><block type="text"><field name="TEXT">1.00</field></block></value>
+        <value name="VERSOIN"><block type="text"><field name="TEXT">9.42</field></block></value>
         <value name="DESCRIPTION"><block type="text"><field name="TEXT">My expert advisor</field></block></value>
         <next>
           <block type="variables_declare">
