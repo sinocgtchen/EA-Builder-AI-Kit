@@ -17,7 +17,7 @@ MT5 EA 也使用 `mql4_setup`，不要發明 `mql5_setup`。EA 執行區為 `OnT
 
 - 只保留一個 EA 入口 `mql4_setup`，包含參數宣告、初始化 `OnInit` 與主程式 `OnTick` 三個區域。
 - 參數宣告 `Declare` 從 `property_info` 開始，保留版權、網站連結、版本與描述；後接 `MagicNumber` 的外部參數宣告，型別為 `int`。
-- 版權預設為 `Forex-EABuilder`、連結預設為 `http://www.forex-eabuilder.com`。版本以目前資料包產品版本為準，不照抄圖片中的舊版號；描述可改成使用者策略名稱。
+- 版權預設為 `Forex-EABuilder`、連結預設為 `http://www.forex-eabuilder.com`。程式屬性的版本是該 EA 的版本，新策略未指定時使用 `1.00`；不得照抄資料包的產品版本 `9.42.1` 或圖片中的版號。描述可改成使用者策略名稱。
 - 骨架的 MagicNumber 初值為 `168`；使用者有指定交易識別碼時，以使用者值取代初值，保留變數名稱 `MagicNumber`，不得另宣告一個重複的識別碼。交易與持倉篩選引用同一個變數。
 - 其他外部參數與全域變數接在 MagicNumber 宣告後的 `next` 鏈。需要啟動時設定的積木放在 `OnInit`，訊號判斷、持倉管理與進出場放在 `OnTick`。
 - 未使用的初始化或主程式區可為空，但必須保留 EA 入口及其三區結構。Blockly 重新序列化時可能省略空的 statement 節點，入口仍會顯示空插槽。
@@ -35,7 +35,7 @@ Script 使用前述 Script 入口，不套用 EA 的事件區名稱。
       <block type="property_info">
         <value name="COPYRIGHT"><block type="text"><field name="TEXT">Forex-EABuilder</field></block></value>
         <value name="LINK"><block type="text"><field name="TEXT">http://www.forex-eabuilder.com</field></block></value>
-        <value name="VERSOIN"><block type="text"><field name="TEXT">9.42.1</field></block></value>
+        <value name="VERSOIN"><block type="text"><field name="TEXT">1.00</field></block></value>
         <value name="DESCRIPTION"><block type="text"><field name="TEXT">My expert advisor</field></block></value>
         <next>
           <block type="variables_declare">
@@ -53,7 +53,19 @@ Script 使用前述 Script 入口，不套用 EA 的事件區名稱。
 </xml>
 ```
 
-程式屬性的版本輸入名稱在現有規格中是 `VERSOIN`，須使用此精確名稱，不能自行改成 `VERSION`。MT4／MT5 的 `blank-*-ea.xml` 範例提供相同必要骨架；以上版號為目前版本示例。
+程式屬性的版本輸入名稱在現有規格中是 `VERSOIN`，須使用此精確名稱，不能自行改成 `VERSION`。MT4／MT5 的 `blank-*-ea.xml` 範例提供相同必要骨架，預設程式版本為 `1.00`。
+
+## 程式版本與 MT5 編譯警告
+
+`property_info` 的 `VERSOIN` 會輸出為 MQL 的 `#property version`，代表這個 EA／Script 的程式版本，並不是 EA Builder 或 AI Kit 產品版本。
+
+- 版本使用一個小數點分隔的兩段數字，例如 `1.00`、`1.01`、`2.10`。本資料包檢查兩段各為 1 至 3 位數字。
+- 不使用 `9.42.1`、`v1.00`、日期或帶說明文字的版號。MQL5 的 Market 版本格式警告要求 `xxx.yyy`；`9.42.1` 有兩個小數點，不符合此格式。
+- 新策略未指定程式版本時使用 `1.00`；使用者指定值不符合格式時，說明問題並請其指定有效程式版本，不自行截斷或換算三段式版本。
+- 修正這類警告時，只修改程式屬性中的版本文字，不調整交易條件、手數、持倉限制或 MagicNumber。修改既有 XML 但本次無關版本時，若發現不符合格式的版號，列出警告，不靜默改版。
+- `blocks-reference.json` 的 `productVersion` 與專案 `VERSION` 仍保留實際產品版本，用於規格相容性，不改成 `1.00`。
+
+來源：[MQL5 程式屬性文件](https://www.mql5.com/en/docs/basis/preprosessor/compilation)、[MQL5 編譯警告清單](https://www.mql5.com/en/docs/constants/errorswarnings/warningscompile)。
 
 輸出連接到 `<value name="...">`；敘述連接到 `<statement name="...">`；同一敘述鏈的下一塊積木使用 `<next><block .../></next>`。不要把敘述積木接到 value，或把輸出積木接到 statement。
 

@@ -4,6 +4,8 @@
 
 所有新 EA 策略都必須在預設 EA 骨架上增加積木，保留程式屬性、MagicNumber 外部參數、參數宣告、初始化及主程式三區。具體規則與骨架見 [XML-RULES.md](XML-RULES.md)；MT4／MT5 空白 EA 範例已包含這些必要項目。
 
+程式屬性版本預設為 `1.00`，與資料包產品版本分開。不要將 `9.42.1` 填入程式屬性，否則 MT5 會出現 Market 版本格式警告；詳見 XML 規則中的程式版本說明。
+
 ## 不下載資料包：使用 GitHub 連結
 
 公開 repository：[sinocgtchen/EA-Builder-AI-Kit](https://github.com/sinocgtchen/EA-Builder-AI-Kit)。

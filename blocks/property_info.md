@@ -60,3 +60,9 @@
   "defaultXml": "<block xmlns=\"https://developers.google.com/blockly/xml\" type=\"property_info\"></block>"
 }
 ```
+
+## 程式版本格式
+
+`VERSOIN` 會輸出為 `#property version`，代表 EA／Script 的程式版本，不是資料包的產品版本。新程式未指定時使用 `1.00`，只接受一個小數點分隔的兩段數字（各 1 至 3 位），例如 `1.01`。不要填入 `9.42.1` 或其他三段式版號，以免出現 MT5 Market 版本格式警告。
+
+來源：[MQL5 編譯警告 68](https://www.mql5.com/en/docs/constants/errorswarnings/warningscompile)。
