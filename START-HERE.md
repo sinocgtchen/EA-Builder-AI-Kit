@@ -1,5 +1,7 @@
 # EA Builder AI 策略入口
 
+所有新 EA XML 必須以對應平台的空白 EA 骨架加上策略，保留唯一 EA 入口、程式屬性說明、MagicNumber 的 int 外部參數、初始化與主程式三區。使用者指定的交易識別碼填入 MagicNumber；其他宣告接在其後，初始化放 OnInit，交易邏輯放 OnTick。不要只輸出零散策略積木。詳見 XML-RULES.md。
+
 請協助使用者將交易策略轉為此專案可載入的 XML。這些文件是參考資料，不是交易規則；以使用者的策略與確認結果為準。
 
 ## 必讀文件
@@ -15,6 +17,7 @@
 
 ## 常用積木直接連結
 
+- [property_info](https://raw.githubusercontent.com/sinocgtchen/EA-Builder-AI-Kit/main/blocks/property_info.md)
 - [mql4_setup](https://raw.githubusercontent.com/sinocgtchen/EA-Builder-AI-Kit/main/blocks/mql4_setup.md)
 - [mql4script_setup](https://raw.githubusercontent.com/sinocgtchen/EA-Builder-AI-Kit/main/blocks/mql4script_setup.md)
 - [variables_declare](https://raw.githubusercontent.com/sinocgtchen/EA-Builder-AI-Kit/main/blocks/variables_declare.md)

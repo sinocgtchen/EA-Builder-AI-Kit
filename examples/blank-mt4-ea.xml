@@ -1,1 +1,23 @@
-<xml xmlns="https://developers.google.com/blockly/xml"><variables><variable id="input-lots">Lots</variable></variables><block type="mql4_setup" x="30" y="30"><statement name="Declare"><block type="variables_declare"><field name="TYPE_PARAMETERS">input</field><field name="VAR" id="input-lots">Lots</field><field name="TYPE">double</field><value name="VALUE"><block type="math_number"><field name="NUM">0.01</field></block></value></block></statement></block></xml>
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables><variable id="input-magic-number">MagicNumber</variable></variables>
+  <block type="mql4_setup" x="30" y="30">
+    <statement name="Declare">
+      <block type="property_info">
+        <value name="COPYRIGHT"><block type="text"><field name="TEXT">Forex-EABuilder</field></block></value>
+        <value name="LINK"><block type="text"><field name="TEXT">http://www.forex-eabuilder.com</field></block></value>
+        <value name="VERSOIN"><block type="text"><field name="TEXT">9.42.1</field></block></value>
+        <value name="DESCRIPTION"><block type="text"><field name="TEXT">My expert advisor</field></block></value>
+        <next>
+          <block type="variables_declare">
+            <field name="TYPE_PARAMETERS">input</field>
+            <field name="VAR" id="input-magic-number">MagicNumber</field>
+            <field name="TYPE">int</field>
+            <value name="VALUE"><block type="math_number"><field name="NUM">168</field></block></value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="OnInit"></statement>
+    <statement name="OnTick"></statement>
+  </block>
+</xml>

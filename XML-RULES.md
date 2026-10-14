@@ -11,25 +11,49 @@
 
 MT5 EA 也使用 `mql4_setup`，不要發明 `mql5_setup`。EA 執行區為 `OnTick`；Script 骨架在 XML 也使用 `OnTick` 輸入名稱，由 Script 產生器輸出 `OnStart()`。XML 本身不會自動切換網站目標平台，使用者需選擇正確的程式碼頁籤及模式。
 
-## 基本結構
+## 所有新 EA 策略的必要骨架
+
+每份新生成的 EA 策略 XML 都必須從 EA Builder 的預設 EA 骨架加上策略，MT4 EA 與 MT5 EA 皆適用。不得只輸出零散的進出場積木，或省略程式屬性與 MagicNumber。
+
+- 只保留一個 EA 入口 `mql4_setup`，包含參數宣告、初始化 `OnInit` 與主程式 `OnTick` 三個區域。
+- 參數宣告 `Declare` 從 `property_info` 開始，保留版權、網站連結、版本與描述；後接 `MagicNumber` 的外部參數宣告，型別為 `int`。
+- 版權預設為 `Forex-EABuilder`、連結預設為 `http://www.forex-eabuilder.com`。版本以目前資料包產品版本為準，不照抄圖片中的舊版號；描述可改成使用者策略名稱。
+- 骨架的 MagicNumber 初值為 `168`；使用者有指定交易識別碼時，以使用者值取代初值，保留變數名稱 `MagicNumber`，不得另宣告一個重複的識別碼。交易與持倉篩選引用同一個變數。
+- 其他外部參數與全域變數接在 MagicNumber 宣告後的 `next` 鏈。需要啟動時設定的積木放在 `OnInit`，訊號判斷、持倉管理與進出場放在 `OnTick`。
+- 未使用的初始化或主程式區可為空，但必須保留 EA 入口及其三區結構。Blockly 重新序列化時可能省略空的 statement 節點，入口仍會顯示空插槽。
+- 修改既有策略時，在既有骨架上增修，保留使用者原有屬性、版本、識別碼與其他未要求修改的設定。
+
+Script 使用前述 Script 入口，不套用 EA 的事件區名稱。
+
+## 基本骨架範例
 
 ```xml
 <xml xmlns="https://developers.google.com/blockly/xml">
-  <variables><variable id="lots">Lots</variable></variables>
+  <variables><variable id="input-magic-number">MagicNumber</variable></variables>
   <block type="mql4_setup" x="30" y="30">
     <statement name="Declare">
-      <block type="variables_declare">
-        <field name="TYPE_PARAMETERS">input</field>
-        <field name="VAR" id="lots">Lots</field>
-        <field name="TYPE">double</field>
-        <value name="VALUE">
-          <block type="math_number"><field name="NUM">0.01</field></block>
-        </value>
+      <block type="property_info">
+        <value name="COPYRIGHT"><block type="text"><field name="TEXT">Forex-EABuilder</field></block></value>
+        <value name="LINK"><block type="text"><field name="TEXT">http://www.forex-eabuilder.com</field></block></value>
+        <value name="VERSOIN"><block type="text"><field name="TEXT">9.42.1</field></block></value>
+        <value name="DESCRIPTION"><block type="text"><field name="TEXT">My expert advisor</field></block></value>
+        <next>
+          <block type="variables_declare">
+            <field name="TYPE_PARAMETERS">input</field>
+            <field name="VAR" id="input-magic-number">MagicNumber</field>
+            <field name="TYPE">int</field>
+            <value name="VALUE"><block type="math_number"><field name="NUM">168</field></block></value>
+          </block>
+        </next>
       </block>
     </statement>
+    <statement name="OnInit"></statement>
+    <statement name="OnTick"></statement>
   </block>
 </xml>
 ```
+
+程式屬性的版本輸入名稱在現有規格中是 `VERSOIN`，須使用此精確名稱，不能自行改成 `VERSION`。MT4／MT5 的 `blank-*-ea.xml` 範例提供相同必要骨架；以上版號為目前版本示例。
 
 輸出連接到 `<value name="...">`；敘述連接到 `<statement name="...">`；同一敘述鏈的下一塊積木使用 `<next><block .../></next>`。不要把敘述積木接到 value，或把輸出積木接到 statement。
 

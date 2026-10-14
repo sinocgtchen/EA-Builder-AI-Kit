@@ -2,11 +2,15 @@
 
 這個資料包讓你使用自己的 ChatGPT 產生 EA Builder XML，不需要網站內建 AI 對話框或 API Key。
 
+所有新 EA 策略都必須在預設 EA 骨架上增加積木，保留程式屬性、MagicNumber 外部參數、參數宣告、初始化及主程式三區。具體規則與骨架見 [XML-RULES.md](XML-RULES.md)；MT4／MT5 空白 EA 範例已包含這些必要項目。
+
 ## 不下載資料包：使用 GitHub 連結
 
 公開 repository：[sinocgtchen/EA-Builder-AI-Kit](https://github.com/sinocgtchen/EA-Builder-AI-Kit)。
 
 在自己的 ChatGPT 貼上以下內容，再填入策略：
+
+若要減少來回詢問，可直接複製 [繁體中文策略輸入範本](STRATEGY-TEMPLATE-zh-hant.md)，用一般文字填好進出場與參數。範本包含 GitHub 連結、可選的預設規則與生成指示，交易距離統一使用 points。
 
 ```text
 請開啟並閱讀以下 EA Builder 策略入口及它連結的指示、XML 規則。
@@ -41,6 +45,7 @@ ChatGPT 的檔案功能依帳號與當時可用功能而定。不能只說「生
 - `blocks-reference.json`：從網站實際使用的壓縮積木及四種 MQL 產生器讀取的精確規格。包含欄位、選項、輸入、連接與預設 XML。
 - `XML-RULES.md`：變數、value／statement／next、mutation 及平台規則。
 - `PROMPT-zh-hant.txt`：可複製給 ChatGPT 的指示。
+- `STRATEGY-TEMPLATE-zh-hant.md`：一般中文策略表單、points 距離單位與完整填寫示例；已包含 GitHub 讀取指示。
 - `examples/blank-mt4-ea.xml`、`blank-mt5-ea.xml`：EA 骨架。
 - `examples/blank-mt4-script.xml`、`blank-mt5-script.xml`：Script 骨架。
 - `examples/ma-cross-reference.xml`、`examples/rsi-reference.xml`：既有範例，用來參考結構；不是對你的交易需求或參數的建議。
